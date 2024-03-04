@@ -38,6 +38,10 @@ https://github.com/nvim-lualine/lualine.nvim
 Undotree visualizes the undo history and makes it easy to browse and switch between different undo branches.
 https://github.com/mbbill/undotree
 
+## Lua Snip
+
+https://github.com/L3MON4D3/LuaSnip
+
 ## Other Resources
 NVChad
 https://github.com/NvChad/NvChad
