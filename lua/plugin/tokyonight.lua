@@ -11,7 +11,7 @@ return {
         transparent = true, -- Enable this to disable setting the background color
         -- etc.
       })
-      vim.cmd.colorscheme "tokyonight"
+      -- vim.cmd.colorscheme "tokyonight"
     end,
   },
   -- other plugins ...
