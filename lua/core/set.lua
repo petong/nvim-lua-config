@@ -16,7 +16,7 @@ vim.opt.undofile = true
 
 
 vim.opt.number = true
-vim.opt.mouse = "" 
+vim.opt.mouse = ""
 
 -- Indentation
 vim.opt.autoindent = true
