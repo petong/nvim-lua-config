@@ -1,3 +1,4 @@
+# Neovim Configs in Lua
 ## Plugins
 ### Lazy.nvim
 https://github.com/folke/lazy.nvim
