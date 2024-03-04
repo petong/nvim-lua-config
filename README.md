@@ -7,6 +7,7 @@ Highly extendable fuzzy finder over lists
 https://github.com/nvim-telescope/telescope.nvim
 
 |key|action|
+|---|------|
 |C-p|fuzzy search git|
 |<leader>pws|search for highlighted word in git repo|
 |<leader>ps|Grep >|
@@ -43,5 +44,6 @@ https://github.com/NvChad/NvChad
 ## Key Mappings
 
 |key|action|
+|---|------|
 |C-n|Toggle nvim-tree|
 |<leader>u|undo tree|
