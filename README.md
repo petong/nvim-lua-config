@@ -46,6 +46,15 @@ https://github.com/L3MON4D3/LuaSnip
 NVChad
 https://github.com/NvChad/NvChad
 
+neovim LSP setup
+https://andrewcourter.substack.com/p/neovim-lsp-basics
+
+linting and formatting
+https://andrewcourter.substack.com/p/configure-linting-formatting-ang
+
+neovim lua guide
+https://neovim.io/doc/user/lua-guide.html
+
 ## Key Mappings
 
 |key|action|
