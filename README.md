@@ -18,10 +18,35 @@ Files in this directory are used for setting vim configs, key mappings.
 Used for plugin configuration
 
 
+## Themese
+### catpuccin
+### Tokyonight
 
 ## Plugins
+
 ### Lazy.nvim
 https://github.com/folke/lazy.nvim
+
+### LSP Zero
+https://lsp-zero.netlify.app/v3.x/guide/integrate-with-mason-nvim
+https://lsp-zero.netlify.app/v3.x/getting-started.html
+
+further research:
+https://dev.to/vonheikemen/make-lsp-zeronvim-coexists-with-other-plugins-instead-of-controlling-them-2i80
+
+### lualine
+A blazing fast and easy to configure Neovim statusline written in iLua.
+https://github.com/nvim-lualine/lualine.nvim
+
+### mason
+
+### nvim-cmp
+
+### nvim-lspconfig
+
+### nvim-tree
+A File Explorer For Neovim Written In Lua
+https://github.com/nvim-tree/nvim-tree.lua
 
 ### Telescope
 Highly extendable fuzzy finder over lists
@@ -36,6 +61,8 @@ https://github.com/nvim-telescope/telescope.nvim
 |<leader>fg|live grep|
 |<leader>fb|buffers|
 
+### Treesitter
+
 ### Which Key
 Displays a popup with possible key bindings of the command you started typing
 ```
@@ -46,29 +73,15 @@ Displays a popup with possible key bindings of the command you started typing
 ```
 https://github.com/folke/which-key.nvim
 
-### nvim-tree
-A File Explorer For Neovim Written In Lua
-https://github.com/nvim-tree/nvim-tree.lua
-
-### lualine
-A blazing fast and easy to configure Neovim statusline written in iLua.
-https://github.com/nvim-lualine/lualine.nvim
-
 ### undotree
 Undotree visualizes the undo history and makes it easy to browse and switch between different undo branches.
 https://github.com/mbbill/undotree
-
-### nvim-cmp
 
 
 ## Lua Snip
 
 https://github.com/L3MON4D3/LuaSnip
 
-
-### LSP Zero
-https://lsp-zero.netlify.app/v3.x/guide/integrate-with-mason-nvim
-https://lsp-zero.netlify.app/v3.x/getting-started.html
 
 ## Other Resources
 NVChad
