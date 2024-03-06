@@ -1,4 +1,24 @@
 # Neovim Configs in Lua
+
+The repo is set up with 3 main areas:
+
+```
+❯ tree -d
+.
+└── lua
+    ├── config
+    ├── core
+    └── plugins
+```
+
+### core
+Files in this directory are used for setting vim configs, key mappings.
+
+### config
+Used for plugin configuration
+
+
+
 ## Plugins
 ### Lazy.nvim
 https://github.com/folke/lazy.nvim
@@ -37,6 +57,9 @@ https://github.com/nvim-lualine/lualine.nvim
 ### undotree
 Undotree visualizes the undo history and makes it easy to browse and switch between different undo branches.
 https://github.com/mbbill/undotree
+
+### nvim-cmp
+
 
 ## Lua Snip
 
