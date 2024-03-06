@@ -42,6 +42,11 @@ https://github.com/mbbill/undotree
 
 https://github.com/L3MON4D3/LuaSnip
 
+
+### LSP Zero
+https://lsp-zero.netlify.app/v3.x/guide/integrate-with-mason-nvim
+https://lsp-zero.netlify.app/v3.x/getting-started.html
+
 ## Other Resources
 NVChad
 https://github.com/NvChad/NvChad
