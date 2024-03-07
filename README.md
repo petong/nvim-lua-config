@@ -77,12 +77,12 @@ https://github.com/folke/which-key.nvim
 Undotree visualizes the undo history and makes it easy to browse and switch between different undo branches.
 https://github.com/mbbill/undotree
 
-### nvim-cmp
-
 =======
 |key|action|
 |---|------|
 |<leader>u| undotree|
+
+### nvim-cmp
 
 ## Lua Snip
 
