@@ -61,6 +61,9 @@ https://github.com/nvim-telescope/telescope.nvim
 |<leader>fg|live grep|
 |<leader>fb|buffers|
 
+### Toggle Term
+https://github.com/akinsho/toggleterm.nvim
+
 ### Treesitter
 
 ### Which Key
