@@ -1,5 +1,7 @@
 local cmp = require'cmp'
 
+print("Before cmp.setup()")
+
 cmp.setup({
   snippet = {
     -- REQUIRED - you must specify a snippet engine
@@ -24,7 +26,6 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' }, -- For luasnip users.
-  }, {
     { name = 'buffer' },
   })
 })
@@ -42,7 +43,8 @@ cmp.setup.filetype('gitcommit', {
 cmp.setup.cmdline({ '/', '?' }, {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
-    { name = 'buffer' }
+    { name = 'buffer' },
+    { name = 'buffer-lines' }
   }
 })
 
@@ -56,6 +58,9 @@ cmp.setup.cmdline(':', {
   })
 })
 
+print("After cmp.setup()")
+
+print(vim.inspect(cmp.sources))
 -- Set up lspconfig.
 -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
