@@ -22,9 +22,14 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
   }),
   sources = cmp.config.sources({
+    { name = "copilot" },
     { name = 'nvim_lsp' },
     { name = 'luasnip' }, -- For luasnip users.
-    { name = 'buffer' },
+    { name = 'buffer',
+        option = {
+              get_bufnrs = function() return { vim.api.nvim_get_current_buf() } end
+            }
+        },
   })
 })
 
@@ -55,3 +60,10 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' }
   })
 })
+
+-- Set up lspconfig.
+-- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+-- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
+--   capabilities = capabilities
+-- }
