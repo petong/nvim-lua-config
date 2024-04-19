@@ -1,10 +1,10 @@
 return {
     {"nvim-treesitter/nvim-treesitter",
       lazy = false,
-      -- dependencies = {"nvim-treesitter/nvim-treesitter-textobjects"},
+      dependencies = {"nvim-treesitter/nvim-treesitter-textobjects"},
       build = ":TSUpdate",
       opts = {
-         ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
+         ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
          sync_install = false,  -- Install parsers synchronously (only applied to `ensure_installed`)
          auto_install = true,
          highlight = {
