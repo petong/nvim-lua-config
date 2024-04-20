@@ -62,5 +62,20 @@ require('mason-lspconfig').setup({
         ---
       })
     end,
+    pylsp = function()
+        require'lspconfig'.pylsp.setup{
+          capabilities = lsp_capabilities,
+          settings = {
+            pylsp = {
+              plugins = {
+                pycodestyle = {
+                  ignore = {'W391'},
+                  maxLineLength = 100
+                }
+              }
+            }
+          }
+        }
+    end
   },
 })

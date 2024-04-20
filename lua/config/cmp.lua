@@ -1,4 +1,5 @@
 local cmp = require'cmp'
+local luasnip = require('luasnip')
 
 cmp.setup({
   snippet = {
@@ -24,7 +25,7 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = "copilot" },
     { name = 'nvim_lsp' },
-    { name = 'luasnip' }, -- For luasnip users.
+    { name = 'luasnip', keyword_length = 1 }, -- For luasnip users.
     { name = 'buffer',
         option = {
               get_bufnrs = function() return { vim.api.nvim_get_current_buf() } end
