@@ -43,3 +43,9 @@ vim.opt.backupdir = backup_dir
 local undo_dir = data_dir .. '/undo//'
 vim.fn.mkdir(undo_dir, 'p')
 vim.opt.undodir = undo_dir
+
+
+-- obsidian settings
+vim.opt_local.conceallevel = 2
+
+vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
