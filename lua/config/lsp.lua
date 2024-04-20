@@ -27,55 +27,44 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local default_setup = function(server)
-  require('lspconfig')[server].setup({
-    capabilities = lsp_capabilities,
-    settings = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT'
-      },
-      diagnostics = {
-        globals = {'vim'},
-      },
-      workspace = {
-        library = {
-          vim.env.VIMRUNTIME,
-        }
-      }
-    }
-  }
-  })
-end
-
 require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = {},
   handlers = {
-    default_setup,
     lua_ls = function()
       require('lspconfig').lua_ls.setup({
         capabilities = lsp_capabilities,
-        ---
-        -- This is where you place
-        -- your custom config
-        ---
+        settings = {
+        Lua = {
+          runtime = {
+            version = 'LuaJIT'
+          },
+          diagnostics = {
+            globals = {'vim'},
+          },
+          workspace = {
+            library = {
+              vim.env.VIMRUNTIME,
+            }
+          }
+        }
+      }
       })
     end,
     pylsp = function()
         require'lspconfig'.pylsp.setup{
-          capabilities = lsp_capabilities,
-          settings = {
-            pylsp = {
-              plugins = {
-                pycodestyle = {
-                  ignore = {'W391'},
-                  maxLineLength = 100
+            capabilities = lsp_capabilities,
+            settings = {
+              pylsp = {
+                plugins = {
+                  pycodestyle = {
+                    ignore = {'W391'},
+                    maxLineLength = 100
+                  }
                 }
               }
             }
           }
-        }
     end
   },
 })
