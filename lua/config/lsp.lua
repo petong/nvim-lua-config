@@ -65,6 +65,16 @@ require('mason-lspconfig').setup({
               }
             }
           }
+    end,
+    tflint = function()
+        require('lspconfig').tflint.setup({
+            capabilities = lsp_capabilities,
+        })
+    end,
+    terraformls = function ()
+        require('lspconfig').terraformls.setup({
+            capabilities = lsp_capabilities,
+        })
     end
   },
 })
