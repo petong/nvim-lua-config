@@ -5,7 +5,8 @@ return {
 
     dependencies = {
         "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope-ui-select.nvim"
+        "nvim-telescope/telescope-ui-select.nvim",
+        "xiyaowong/telescope-emoji.nvim"
     },
 
     config = function()
@@ -29,6 +30,18 @@ return {
               --      do the following
               --   codeactions = false,
               -- }
+            },
+            ["emoji"] = {
+              action = function(emoji)
+                -- argument emoji is a table.
+                -- {name="", value="", cagegory="", description=""}
+
+                vim.fn.setreg("*", emoji.value)
+                print([[Press p or "*p to paste this emoji]] .. emoji.value)
+
+                -- insert emoji when picked
+                vim.api.nvim_put({ emoji.value }, 'c', false, true)
+              end,
             }
           }
         })
@@ -53,6 +66,7 @@ return {
         vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = '[F]ind [B]uffers' })
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
         require("telescope").load_extension("ui-select")
+        require("telescope").load_extension("emoji")
     end
 }
 
