@@ -1,7 +1,8 @@
 return {
-    "folke/which-key.nvim",
-    "tpope/vim-fugitive",
     "NLKNguyen/papercolor-theme",
+    "folke/which-key.nvim",
     "github/copilot.vim",
-    "mfussenegger/nvim-dap"
+    "mfussenegger/nvim-dap",
+    "tpope/vim-fugitive",
+
 }
