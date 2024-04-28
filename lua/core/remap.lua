@@ -1,3 +1,6 @@
+-- disable F1 help
+vim.keymap.set("n", "<F1>", "<nop>")
+-- set leader to \ instead of ,
 vim.g.mapleader = "\\"
 
 -- treesitter
