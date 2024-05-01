@@ -3,3 +3,8 @@ require('gen').prompts['DevOps me!'] = {
   replace = true
 }
 
+require('gen').prompts['Summarize and highlight'] = {
+  prompt = "Provide a summary of the text and highlight the key points. provide action items as well. $input:\n$text",
+  replace = true
+}
+
