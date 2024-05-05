@@ -1,5 +1,5 @@
 return {
-    require("obsidian").setup({ 
+    require("obsidian").setup({
         open_app_foreground = false,
         workspaces = {
           {
