@@ -75,6 +75,24 @@ require('mason-lspconfig').setup({
         require('lspconfig').terraformls.setup({
             capabilities = lsp_capabilities,
         })
-    end
+    end,
+    yamlls = function ()
+        require('lspconfig').yamlls.setup({
+            capabilities = lsp_capabilities,
+        })
+    end,
+    gopls = function()
+      require('lspconfig').gopls.setup({
+        capabilities = lsp_capabilities,
+        settings = {
+          gopls = {
+            analyses = {
+              unusedparams = true,
+            },
+            staticcheck = true,
+          },
+        },
+      })
+    end,
   },
 })
