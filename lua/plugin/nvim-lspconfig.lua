@@ -11,23 +11,17 @@ return {
     require('mason').setup({})
     require('mason-lspconfig').setup({
       ensure_installed = {
-        "lua-language-server",
         "lua_ls",
-        "python-lsp-server",
+        "pylsp",
         "rust_analyzer",
         "gopls",
-        "hclfmt",
-        "jq",
-        "json-lsp",
-        "jsonlint",
-        "lua-language-server",
-        "pylint",
-        "python-lsp-server",
-        "rust-analyzer",
-        "terraform-ls",
-        "typescript-language-server",
-        "vim-language-server",
-        "yaml-language-server",
+        "terraformls",
+        "jsonls",
+        "rust_analyzer",
+        "terraformls",
+        "tsserver",
+        "vimls",
+        "yamlls",
       },
       ui = {
         icons = {
