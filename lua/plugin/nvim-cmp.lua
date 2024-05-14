@@ -147,17 +147,16 @@ return {
       },
     })
 
-    vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open Diagnostic Float' })
 
-    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-    vim.lsp.handlers.hover,
-    {border = 'rounded'}
-    )
-
-    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-    vim.lsp.handlers.signature_help,
-    {border = 'rounded'}
-    )
+--     vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+--     vim.lsp.handlers.hover,
+--     {border = 'rounded'}
+--     )
+-- 
+--     vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+--     vim.lsp.handlers.signature_help,
+--     {border = 'rounded'}
+--     )
 
   end,
   }
