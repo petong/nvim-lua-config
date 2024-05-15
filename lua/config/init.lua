@@ -1,5 +1,4 @@
 require("config.lualine")
-require("config.luasnip")
 require("config.noice")
 require("config.nvim-dap")
 require("config.nvim-tree")
