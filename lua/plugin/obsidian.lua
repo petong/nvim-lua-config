@@ -48,6 +48,27 @@ return {
           template = "Daily Template",
         },
 
+        -- Optional, completion of wiki links, local markdown links, and tags using nvim-cmp.
+        completion = {
+          -- Set to false to disable completion.
+          nvim_cmp = true,
+          -- Trigger completion at 2 chars.
+          min_chars = 2,
+        },
+
+        picker = {
+       -- Set your preferred picker. Can be one of 'telescope.nvim', 'fzf-lua', or 'mini.pick'.
+          name = "telescope.nvim",
+          -- Optional, configure key mappings for the picker. These are the defaults.
+          -- Not all pickers support all mappings.
+          mappings = {
+            -- Create a new note from your query.
+            new = "<C-x>",
+            -- Insert a link to the selected note.
+            insert_link = "<C-l>",
+          },
+        },
+
     })
   end,
 }

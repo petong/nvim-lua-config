@@ -1,2 +1,2 @@
-require("config.obsidian")
+-- require("config.obsidian")
 require("config.toggleterm")
