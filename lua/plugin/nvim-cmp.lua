@@ -47,7 +47,7 @@ return {
 
           ['<C-Space>'] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          -- ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
           ['<C-f>'] = cmp.mapping(function(fallback)
             if luasnip.jumpable(1) then
               luasnip.jump(1)
@@ -63,6 +63,52 @@ return {
             end
           end, {'i', 's'}),
 
+        -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ '/', '?' }, {
+  mapping = cmp.mapping.preset.cmdline({
+    -- Add this line to select the first item automatically
+    ['<C-n>'] = {
+      c = function()
+        if cmp.visible() then
+          cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+        else
+          cmp.complete()
+        end
+      end
+    },
+    ['<Down>'] = {
+      c = function()
+        if cmp.visible() then
+          cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+        else
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Down>', true, false, true), 'n', true)
+        end
+      end
+    },
+    ['<Up>'] = {
+      c = function()
+        if cmp.visible() then
+          cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+        else
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Up>', true, false, true), 'n', true)
+        end
+      end
+    },
+    ['<CR>'] = {
+      c = function()
+        if cmp.visible() then
+          cmp.confirm({ select = true }) -- Add this line to confirm the selection
+        else
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<CR>', true, false, true), 'n', true)
+        end
+      end
+    },
+  }),
+  sources = {
+    { name = 'buffer' },
+    { name = 'buffer-lines' }
+  }
+})
 
           --    ['<Tab>'] = cmp.mapping(function(fallback)
           --      local col = vim.fn.col('.') - 1
@@ -107,18 +153,66 @@ return {
     })
 
     -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-    cmp.setup.cmdline({ '/', '?' }, {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = {
-        { name = 'buffer' },
-        { name = 'buffer-lines' }
-      }
-    })
+--    cmp.setup.cmdline({ '/', '?' }, {
+--      mapping = cmp.mapping.preset.cmdline(),
+--      sources = {
+--        { name = 'buffer' },
+--        { name = 'buffer-lines' }
+--      }
+--    })
 
     -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-    cmp.setup.cmdline(':', {
-      mapping = cmp.mapping.preset.cmdline(),
+    cmp.setup.cmdline({ '/', '?', ':' }, {
+      mapping = cmp.mapping.preset.cmdline({
+       ['<C-n>'] = {
+          c = function()
+            if cmp.visible() then
+              cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+            else
+              cmp.complete()
+            end
+          end
+        },
+        ['<C-p>'] = {
+          c = function()
+            if cmp.visible() then
+              cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+            else
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Up>', true, false, true), 'n', true)
+            end
+          end
+        },
+        ['<Down>'] = {
+          c = function()
+            if cmp.visible() then
+              cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+            else
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Down>', true, false, true), 'n', true)
+            end
+          end
+        },
+        ['<Up>'] = {
+          c = function()
+            if cmp.visible() then
+              cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+            else
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Up>', true, false, true), 'n', true)
+            end
+          end
+        },
+        ['<CR>'] = {
+          c = function()
+            if cmp.visible() then
+              cmp.confirm({ select = true })
+            else
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<CR>', true, false, true), 'n', true)
+            end
+          end
+        },
+      }),
       sources = cmp.config.sources({
+        { name = 'buffer' },
+        { name = 'buffer-lines' },
         { name = 'path' }
       }, {
         { name = 'cmdline' }
