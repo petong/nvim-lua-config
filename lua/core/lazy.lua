@@ -16,7 +16,7 @@ local opts = {
     lazy = true,
   },
   install = {
-    colorscheme = { "tokyonight" }
+    colorscheme = { "PaperColor" }
   },
   rtp = {
     disabled_plugins = {
@@ -33,7 +33,7 @@ local opts = {
   },
   change_detection = {
     enabled = true,
-    notify = true,
+    notify = false,
   },
   profiling = {
     -- Enables extra stats on the debug tab related to the loader cache.
@@ -46,6 +46,5 @@ local opts = {
 
 require("lazy").setup({
   spec = "plugin",
-  change_detection = { notify = true },
   opts
 })
