@@ -1,10 +1,10 @@
 -- disable F1 help
+--
+--
 vim.keymap.set("n", "<F1>", "<nop>")
 -- set leader to \ instead of ,
 vim.g.mapleader = "\\"
 
--- treesitter
-vim.keymap.set("n", "<C-n>", "<cmd> NvimTreeToggle <CR>")
 
 -- unhighlight search
 vim.keymap.set("n", "<leader><space>", ":noh<cr>")
@@ -12,7 +12,6 @@ vim.keymap.set("n", "<leader><space>", ":noh<cr>")
 --
 
 vim.keymap.set("n", "<leader>|", ":set cursorcolumn!<cr>")
-
 vim.keymap.set("n", "Y", "Y")
 
 -- trouble
