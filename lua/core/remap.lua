@@ -7,7 +7,9 @@ vim.g.mapleader = "\\"
 
 
 -- unhighlight search
-vim.keymap.set("n", "<leader><space>", ":noh<cr>")
+-- vim.keymap.set("n", "<leader><space>", ":noh<cr>")
+-- disable since we can use ctrl-l to clear highlights
+
 -- nnoremap <leader><space> :noh<cr>
 --
 
