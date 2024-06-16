@@ -12,7 +12,7 @@ return {
     options = {
       -- For more themes, see https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
       icons_enabled = true,
-      theme = 'ayu_dark',
+      theme = 'nord',
       component_separators = { left = '', right = ''},
       section_separators = { left = '', right = ''},
       disabled_filetypes = {
