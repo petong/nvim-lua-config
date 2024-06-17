@@ -11,40 +11,34 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local opts = {
-  defaults = {
-    lazy = true,
-  },
-  install = {
-    colorscheme = { "nord" }
-  },
-  rtp = {
-    disabled_plugins = {
-      "gzip",
-      "matchit",
-      "matchparen",
-      "netrw",
-      "netrwplugin",
-      "tarplugin",
-      "tohtml",
-      "tutor",
-      "zipplugin",
-    }
-  },
-  change_detection = {
-    enabled = true,
-    notify = false,
-  },
-  profiling = {
-    -- Enables extra stats on the debug tab related to the loader cache.
-    -- Additionally gathers stats about all package.loaders
-    loader = false,
-    -- Track each new require in the Lazy profiling tab
-    require = false,
-  },
-}
-
 require("lazy").setup({
-  spec = "plugin",
-  opts
+  spec = {
+    {import = "plugin"},
+    {import = "plugin.themes"},
+  },
+  {
+    defaults = {
+      -- Lazy-load by default
+      lazy = true,
+      -- Use the latest version of the plugin (screw semantic versioning)
+      version = false,
+    },
+    performance = {
+      rtp = {
+        disabled_plugins = {
+          "gzip",
+          "tarPlugin",
+          "tohtml",
+          "zipPlugin",
+          "matchit",
+          "matchparen",
+          "netrwPlugin",
+          "rplugin",
+          "nvim",
+          "tutor",
+          -- "spellfile",
+        },
+      },
+    },
+  },
 })
