@@ -49,7 +49,6 @@ return {
       "query",
       "regex",
       "vim",
-      "vim",
       "vimdoc",
     },
   },
