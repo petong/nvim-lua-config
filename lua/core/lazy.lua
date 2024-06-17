@@ -16,7 +16,7 @@ local opts = {
     lazy = true,
   },
   install = {
-    colorscheme = { "PaperColor" }
+    colorscheme = { "nord" }
   },
   rtp = {
     disabled_plugins = {

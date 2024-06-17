@@ -18,9 +18,10 @@ Files in this directory are used for setting vim configs, key mappings.
 Used for plugin configuration
 
 
-## Themese
+## Themes
 ### catpuccin
 ### Tokyonight
+### nord
 
 ## Plugins
 

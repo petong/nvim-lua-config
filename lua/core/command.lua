@@ -8,4 +8,4 @@ vim.cmd([[
 ]])
 
 -- colorscheme --
-vim.cmd.colorscheme "PaperColor"
+vim.cmd.colorscheme "nord"
