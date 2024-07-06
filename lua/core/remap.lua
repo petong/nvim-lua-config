@@ -55,3 +55,22 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- set scrolloff
 vim.opt.scrolloff = 10
 vim.keymap.set('n', '<leader>to', function() vim.opt.scrolloff = 999 - vim.o.scrolloff end)
+
+
+-- function YankMatchesToNewBuffer(search_phrase)
+--   vim.cmd('global/' .. search_phrase .. '/yank A | new | put A')
+-- end
+--
+-- vim.keymap.set('n', '<leader>ym', function()
+--   local search_phrase = vim.fn.input('Search phrase: ')
+--   YankMatchesToNewBuffer(search_phrase)
+-- end)
+
+function YankMatchesToNewBuffer()
+  local search_phrase = vim.fn.getreg('/')
+  vim.cmd('let @a=""')
+  vim.cmd('global/' .. search_phrase .. '/yank A')
+  vim.cmd('new | put A')
+end
+
+vim.api.nvim_set_keymap('n', '<leader>ym', ':lua YankMatchesToNewBuffer()<CR>', { noremap = true, silent = true })

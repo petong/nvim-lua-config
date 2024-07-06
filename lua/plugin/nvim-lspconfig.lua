@@ -86,6 +86,8 @@ return {
       },
     }
 
+    lspconfig.tsserver.setup {}
+
     -- Globally configure all LSP floating preview popups (like hover, signature help, etc)
     local open_floating_preview = vim.lsp.util.open_floating_preview
     function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)

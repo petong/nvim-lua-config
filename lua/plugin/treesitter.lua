@@ -1,6 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  event = "VeryLazy",
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {"nvim-treesitter/nvim-treesitter-textobjects"},
   build = ":TSUpdate",
   opts = {
@@ -49,8 +49,16 @@ return {
       "query",
       "regex",
       "vim",
-      "vim",
       "vimdoc",
+    },
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<C-space>",
+          node_incremental = "<C-space>",
+          scope_incremental = false,
+          node_decremental = "<bs>",
+        },
     },
   },
   config = function (_, opts)

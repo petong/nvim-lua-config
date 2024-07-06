@@ -6,6 +6,3 @@ vim.cmd([[
     autocmd InsertLeave * match ExtraWhitespace /\s\+$/
     autocmd BufWinLeave * call clearmatches()
 ]])
-
--- colorscheme --
-vim.cmd.colorscheme "PaperColor"
