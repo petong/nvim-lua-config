@@ -19,7 +19,7 @@ return {
     end
 
     vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
-    vim.keymap.set("n", "<leader>tt", ":ToggleTermSendCurrentLine<CR>")
+    -- vim.keymap.set("n", "<leader>tt", ":ToggleTermSendCurrentLine<CR>")
 
     require("toggleterm").setup{}
   end
