@@ -1,4 +1,3 @@
-local utils = require("core.utils")
 -- disable F1 help
 vim.keymap.set("n", "<F1>", "<nop>")
 -- set leader to \ instead of ,
@@ -73,6 +72,3 @@ function YankMatchesToNewBuffer()
 end
 
 vim.api.nvim_set_keymap('n', '<leader>ym', ':lua YankMatchesToNewBuffer()<CR>', { noremap = true, silent = true })
-
-vim.keymap.set("n", "<leader>df", function() utils.telescope_diff_file() end, { desc = "Diff file with current buffer" })
-vim.keymap.set("n", "<leader>dg", function() utils.telescope_diff_from_history() end, { desc = "Diff from git history" })
