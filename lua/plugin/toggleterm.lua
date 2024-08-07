@@ -12,6 +12,7 @@ return {
       float_opts = {
         border = "double",
       },
+      close_on_exit = true,
     })
 
     function _lazygit_toggle()
