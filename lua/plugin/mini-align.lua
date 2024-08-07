@@ -4,8 +4,8 @@ return {
     config = function()
       require('mini.align').setup({
         mappings = {
-          start = 'Ga',
-          start_with_preview = 'GA',
+          start = '',
+          start_with_preview = '',
         },
 
       })
