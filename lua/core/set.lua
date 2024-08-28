@@ -28,6 +28,9 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
+-- splits
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
 local data_dir = vim.fn.expand('~/.local/share/nvim')
 
