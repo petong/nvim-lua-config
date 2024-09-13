@@ -19,7 +19,6 @@ return {
         "jsonls",
         "rust_analyzer",
         "terraformls",
-        "tsserver",
         "vimls",
         "yamlls",
       },
@@ -86,7 +85,7 @@ return {
       },
     }
 
-    lspconfig.tsserver.setup {}
+    lspconfig.ts_ls.setup {}
 
     -- Globally configure all LSP floating preview popups (like hover, signature help, etc)
     local open_floating_preview = vim.lsp.util.open_floating_preview
