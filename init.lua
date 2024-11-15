@@ -27,6 +27,14 @@ require("lazy").setup({
       -- Use the latest version of the plugin (screw semantic versioning)
       version = false,
     },
+    checker = {
+      concurrency = 1,
+      -- needed to get the output of require("lazy.status").updates()
+      enabled = true,
+      -- get a notification when new updates are found?
+      notify = false,
+    },
+  concurrency = 1,
     performance = {
       rtp = {
         disabled_plugins = {
