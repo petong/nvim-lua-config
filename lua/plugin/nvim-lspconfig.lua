@@ -19,6 +19,7 @@ return {
         "jsonls",
         "rust_analyzer",
         "terraformls",
+        "ts_ls",
         "vimls",
         "yamlls",
       },

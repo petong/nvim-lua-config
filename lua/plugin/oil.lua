@@ -179,10 +179,13 @@ return {
         border = "rounded",
       },
     },
+    keys = {
+      { "<leader>o", "<cmd>Oil<CR>", desc = "Open Oil" },
+    },
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function (_, opts)
-      vim.keymap.set("n", "<leader>o", "<cmd> Oil <CR>")
+      -- vim.keymap.set("n", "<leader>o", "<cmd> Oil <CR>")
       require("oil").setup(opts)
     end,
   },

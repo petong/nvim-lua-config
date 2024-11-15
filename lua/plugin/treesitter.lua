@@ -43,6 +43,7 @@ return {
     indent = { enable = true },
     ensure_installed = {
       "c",
+      "http",
       "lua",
       "markdown",
       "markdown_inline",
