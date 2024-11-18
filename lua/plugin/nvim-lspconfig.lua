@@ -68,7 +68,34 @@ return {
             pycodestyle = {
               ignore = {'W391'},
               maxLineLength = 100
+            },
+            -- Disable pylsp's type checking since Pyright will handle that
+            pylsp_mypy = {
+              enabled = false
+            },
+            pyflakes = {
+              enabled = true
+            },
+            yapf = {
+              enabled = false  -- Disable if you prefer black formatting
             }
+          }
+        }
+      }
+    }
+
+    -- Pyright settings
+    lspconfig.pyright.setup {
+      settings = {
+        python = {
+          analysis = {
+            autoSearchPaths = true,
+            diagnosticMode = "workspace",
+            useLibraryCodeForTypes = true,
+            typeCheckingMode = "basic", -- Can be "off", "basic", or "strict"
+            -- Enable these if you want more strict checking
+            -- reportMissingImports = true,
+            -- reportMissingTypeStubs = false,
           }
         }
       }
