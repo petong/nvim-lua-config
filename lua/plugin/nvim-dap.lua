@@ -10,19 +10,18 @@ return {
       -- Python adapter configuration
       dap.adapters.python = {
         type = 'executable',
-        command = '/Users/jph/.zinit/plugins/pyenv---pyenv/shims/python3',
-        args = { '-m', 'debugpy.adapter' },
+        command = 'python',
+        args = { '-m', 'debugpy.adapter' }
       }
 
-      -- Python debugger configuration
       dap.configurations.python = {
         {
           type = 'python',
           request = 'launch',
-          name = 'Launch file',
-          program = '${file}',
+          name = "Launch file",
+          program = "${file}",
           pythonPath = function()
-            return '/Users/jph/.zinit/plugins/pyenv---pyenv/shims/python3'
+            return '/Users/jph/.pyenv/shims/python3' -- Adjust this path
           end,
         },
       }
