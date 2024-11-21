@@ -1,3 +1,12 @@
+---@diagnostic disable: undefined-global
+---@meta
+---@class vim
+---@field fn table
+---@field diagnostic table
+---@field lsp table
+local vim = vim
+
+
 return {
   'hrsh7th/nvim-cmp',
   event = { "InsertEnter", "CmdlineEnter" },
@@ -15,6 +24,7 @@ return {
     local cmp = require'cmp'
     local luasnip = require('luasnip')
     require("luasnip.loaders.from_vscode").lazy_load()
+    require("luasnip").filetype_extend("python", { "python" })
     luasnip.config.setup({})
 
     cmp.setup({
@@ -28,8 +38,12 @@ return {
         documentation = {
           border = "rounded",
           winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
+          max_height = 15,
+          max_width = 60,
+          zindex = 50, -- Lower value to prevent overlap
         },
       },
+      preselect = cmp.PreselectMode.None,
       formatting = {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
@@ -51,10 +65,13 @@ return {
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(), -- Trigger completion with <C-Space>
-        ["<C-e>"] = cmp.mapping.close(),
         ["<C-y>"] = cmp.mapping.confirm({ -- Use <C-y> to accept completion
           behavior = cmp.ConfirmBehavior.Insert,
           select = false,
+        }),
+        ["<C-e>"] = cmp.mapping({
+          i = cmp.mapping.abort(),
+          c = cmp.mapping.close(),
         }),
         ["<C-j>"] = cmp.mapping(function(fallback) -- Use <C-j> for snippet expansion and jumping
           if luasnip.expand_or_jumpable() then
@@ -70,14 +87,58 @@ return {
             fallback()
           end
         end, { "i", "s" }),
+        ["<Esc>"] = cmp.mapping({
+          i = function(fallback)
+            if cmp.visible() then
+              cmp.close()
+            else
+              fallback()
+            end
+          end
+        }),
+        ["<M-k>"] = cmp.mapping(function()
+          vim.lsp.buf.signature_help()
+        end, { "i" }),
       },
-      sources = {
-        { name = "nvim_lsp" },
-        { name = "nvim_lua" },
+      sources = cmp.config.sources({
+        {
+          name = "nvim_lsp",
+          entry_filter = function(entry)
+            return cmp.lsp.CompletionItemKind.Text ~= entry:get_kind()
+          end
+        },
+        -- {
+        --   name = "nvim_lsp_signature_help",
+        --   trigger_characters = { '(', ',' }, -- Only trigger on these characters
+        --   max_item_count = 1
+        -- },
         { name = "luasnip" },
-        { name = "buffer" },
+        { name = "buffer", keyword_length = 3 }, -- Only complete from buffer after 3 chars
         { name = "path" },
         { name = "emoji" },
+      }),
+      -- sources = {
+      --   { name = "nvim_lsp" },
+      --   { name = "nvim_lua" },
+      --   { name = "luasnip" },
+      --   { name = "buffer" },
+      --   { name = "path" },
+      --   { name = "emoji" },
+      -- },
+      sorting = {
+        comparators = {
+          cmp.config.compare.offset,
+          cmp.config.compare.exact,
+          cmp.config.compare.score,
+          cmp.config.compare.kind,
+          cmp.config.compare.sort_text,
+          cmp.config.compare.length,
+          cmp.config.compare.order,
+        },
+      },
+      completion = {
+        keyword_length = 1,
+        completeopt = "menu,menuone,noinsert",
       },
       confirm_opts = {
         behavior = cmp.ConfirmBehavior.Replace,
@@ -85,6 +146,7 @@ return {
       },
       experimental = {
         ghost_text = true,
+        native_menu = false,
       },
     })
 
@@ -133,5 +195,13 @@ return {
         source = 'always',
       },
     })
+    -- Add this to configure LSP signature styling
+    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+      vim.lsp.handlers.signature_help, {
+        silent = true,
+        auto_focus = false,
+        enabled = false
+      }
+    )
   end,
 }

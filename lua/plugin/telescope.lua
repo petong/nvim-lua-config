@@ -1,18 +1,18 @@
+---@diagnostic disable: lowercase-global
+---@type table
+vim = vim
+
 return {
   "nvim-telescope/telescope.nvim",
-
   tag = "0.1.8",
-
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
     "xiyaowong/telescope-emoji.nvim"
   },
-
   config = function()
     local actions = require("telescope.actions")
     local action_state = require("telescope.actions.state")
-
     require('telescope').setup({
       defaults = {
         mappings = {
@@ -21,22 +21,26 @@ return {
             ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_previous,
             ["<CR>"] = function(prompt_bufnr)
               local picker = action_state.get_current_picker(prompt_bufnr)
-              local selected_entries = picker:get_multi_selection()
+              local selections = picker:get_multi_selection()
 
-              -- If no multiple selections, perform default action
-              if #selected_entries == 0 then
-                actions.select_default(prompt_bufnr)
-                return
+              actions.close(prompt_bufnr)
+
+              -- If nothing was selected, operate on current entry
+              if #selections == 0 then
+                local entry = action_state.get_selected_entry()
+                if entry then
+                  selections = { entry }
+                end
               end
 
-              -- Custom handling for multiple selections
-              actions.close(prompt_bufnr)
-              for _, entry in ipairs(selected_entries) do
-                -- Check if we're dealing with a buffer entry
-                if entry.bufnr then
-                  vim.cmd("buffer " .. entry.bufnr)
-                else
+              -- Open each selection in a buffer
+              for _, entry in ipairs(selections) do
+                if entry.path then
+                  vim.cmd("edit " .. entry.path)
+                elseif entry.value then
                   vim.cmd("edit " .. entry.value)
+                elseif entry.filename then
+                  vim.cmd("edit " .. entry.filename)
                 end
               end
             end,
@@ -46,22 +50,26 @@ return {
             ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_previous,
             ["<CR>"] = function(prompt_bufnr)
               local picker = action_state.get_current_picker(prompt_bufnr)
-              local selected_entries = picker:get_multi_selection()
+              local selections = picker:get_multi_selection()
 
-              -- If no multiple selections, perform default action
-              if #selected_entries == 0 then
-                actions.select_default(prompt_bufnr)
-                return
+              actions.close(prompt_bufnr)
+
+              -- If nothing was selected, operate on current entry
+              if #selections == 0 then
+                local entry = action_state.get_selected_entry()
+                if entry then
+                  selections = { entry }
+                end
               end
 
-              -- Custom handling for multiple selections
-              actions.close(prompt_bufnr)
-              for _, entry in ipairs(selected_entries) do
-                -- Check if we're dealing with a buffer entry
-                if entry.bufnr then
-                  vim.cmd("buffer " .. entry.bufnr)
-                else
+              -- Open each selection in a buffer
+              for _, entry in ipairs(selections) do
+                if entry.path then
+                  vim.cmd("edit " .. entry.path)
+                elseif entry.value then
                   vim.cmd("edit " .. entry.value)
+                elseif entry.filename then
+                  vim.cmd("edit " .. entry.filename)
                 end
               end
             end,
@@ -81,7 +89,6 @@ return {
         }
       }
     })
-
     local builtin = require('telescope.builtin')
     vim.keymap.set('n', '<C-p>', builtin.git_files, {})
     vim.keymap.set('n', '<leader>pws', function()
@@ -101,6 +108,14 @@ return {
     vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[F]ind [D]iagnostics' })
     vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = '[F]ind [B]uffers' })
     vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
+    vim.keymap.set('n', '<leader>pd', function()
+      require('telescope.builtin').lsp_document_symbols({ 
+        symbols = {'function', 'method'} 
+      })
+    end, { desc = 'Search Python functions' })
+    -- Add these keymaps:
+    vim.keymap.set('n', '<leader>ps', require('telescope.builtin').lsp_document_symbols, { desc = 'Document Symbols' })
+    vim.keymap.set('n', '<leader>pw', require('telescope.builtin').lsp_dynamic_workspace_symbols, { desc = 'Workspace Symbols' })
     require("telescope").load_extension("ui-select")
     require("telescope").load_extension("emoji")
   end

@@ -69,7 +69,6 @@ return {
               ignore = {'W391'},
               maxLineLength = 100
             },
-            -- Disable pylsp's type checking since Pyright will handle that
             pylsp_mypy = {
               enabled = false
             },
@@ -77,11 +76,28 @@ return {
               enabled = true
             },
             yapf = {
-              enabled = false  -- Disable if you prefer black formatting
+              enabled = false
+            },
+            jedi_signature_help = { enabled = false },
+            jedi = {
+              enabled = true,
+              symbol_information = true,  -- Enable symbol information
+              diagnostics = true          -- Enable diagnostics
             }
           }
         }
-      }
+      },
+      capabilities = (function()
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities.textDocument.documentSymbol = {
+          dynamicRegistration = false,
+          symbolKind = {
+            valueSet = vim.tbl_values(vim.lsp.protocol.SymbolKind)
+          },
+          hierarchicalDocumentSymbolSupport = true
+        }
+        return capabilities
+      end)()
     }
 
     -- Pyright settings
@@ -92,12 +108,12 @@ return {
             autoSearchPaths = true,
             diagnosticMode = "workspace",
             useLibraryCodeForTypes = true,
-            typeCheckingMode = "basic", -- Can be "off", "basic", or "strict"
-            -- Enable these if you want more strict checking
-            -- reportMissingImports = true,
-            -- reportMissingTypeStubs = false,
+            typeCheckingMode = "basic",
           }
         }
+      },
+      handlers = {
+        ["textDocument/signatureHelp"] = false  -- Add this line to disable signature help
       }
     }
 

@@ -10,7 +10,7 @@ return {
       -- Python adapter configuration
       dap.adapters.python = {
         type = 'executable',
-        command = 'python',
+        command = 'python3',
         args = { '-m', 'debugpy.adapter' }
       }
 
@@ -21,7 +21,7 @@ return {
           name = "Launch file",
           program = "${file}",
           pythonPath = function()
-            return '/Users/jph/.pyenv/shims/python3' -- Adjust this path
+            return '/Users/jph/.pyenv/shims/python3'
           end,
         },
       }
