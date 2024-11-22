@@ -6,7 +6,6 @@
 ---@field lsp table
 local vim = vim
 
-
 return {
   'hrsh7th/nvim-cmp',
   event = { "InsertEnter", "CmdlineEnter" },
@@ -37,10 +36,9 @@ return {
         completion = cmp.config.window.bordered(),
         documentation = {
           border = "rounded",
-          winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
+          winhighlight = "NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
           max_height = 15,
           max_width = 60,
-          zindex = 50, -- Lower value to prevent overlap
         },
       },
       preselect = cmp.PreselectMode.None,
@@ -64,23 +62,23 @@ return {
         ["<C-n>"] = cmp.mapping.select_next_item(),
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(), -- Trigger completion with <C-Space>
-        ["<C-y>"] = cmp.mapping.confirm({ -- Use <C-y> to accept completion
-          behavior = cmp.ConfirmBehavior.Insert,
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-y>"] = cmp.mapping.confirm({
+          behavior = cmp.ConfirmBehavior.Replace, -- Changed to match global confirm_opts
           select = false,
         }),
         ["<C-e>"] = cmp.mapping({
           i = cmp.mapping.abort(),
           c = cmp.mapping.close(),
         }),
-        ["<C-j>"] = cmp.mapping(function(fallback) -- Use <C-j> for snippet expansion and jumping
+        ["<C-j>"] = cmp.mapping(function(fallback)
           if luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
           else
             fallback()
           end
         end, { "i", "s" }),
-        ["<C-k>"] = cmp.mapping(function(fallback) -- Use <C-k> for snippet jumping backwards
+        ["<C-k>"] = cmp.mapping(function(fallback)
           if luasnip.jumpable(-1) then
             luasnip.jump(-1)
           else
@@ -107,24 +105,16 @@ return {
             return cmp.lsp.CompletionItemKind.Text ~= entry:get_kind()
           end
         },
-        -- {
-        --   name = "nvim_lsp_signature_help",
-        --   trigger_characters = { '(', ',' }, -- Only trigger on these characters
-        --   max_item_count = 1
-        -- },
+        {
+          name = "nvim_lsp_signature_help",
+          trigger_characters = { '(', ',' },
+          max_item_count = 1
+        },
         { name = "luasnip" },
-        { name = "buffer", keyword_length = 3 }, -- Only complete from buffer after 3 chars
+        { name = "buffer", keyword_length = 3 },
         { name = "path" },
         { name = "emoji" },
       }),
-      -- sources = {
-      --   { name = "nvim_lsp" },
-      --   { name = "nvim_lua" },
-      --   { name = "luasnip" },
-      --   { name = "buffer" },
-      --   { name = "path" },
-      --   { name = "emoji" },
-      -- },
       sorting = {
         comparators = {
           cmp.config.compare.offset,
@@ -150,18 +140,18 @@ return {
       },
     })
 
-    -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+    -- Use buffer source for `/` and `?`
     cmp.setup.cmdline({ '/', '?' }, {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {
         { name = 'buffer' }
       },
       formatting = {
-        fields = { "abbr" } -- Only display the "abbr" field in the completion menu
+        fields = { "abbr" }
       }
     })
 
-    -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+    -- Use cmdline & path source for ':'
     cmp.setup.cmdline(':', {
       mapping = cmp.mapping.preset.cmdline(),
       sources = cmp.config.sources({
@@ -170,7 +160,7 @@ return {
         { name = 'cmdline' }
       }),
       formatting = {
-        fields = { "abbr" } -- Only display the "abbr" field in the completion menu
+        fields = { "abbr" }
       }
     })
 
@@ -195,12 +185,12 @@ return {
         source = 'always',
       },
     })
-    -- Add this to configure LSP signature styling
+
     vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
       vim.lsp.handlers.signature_help, {
         silent = true,
         auto_focus = false,
-        enabled = false
+        enabled = true  -- Changed to true since we have signature help mappings
       }
     )
   end,
